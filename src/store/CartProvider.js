@@ -26,10 +26,7 @@ const CartProvider = ({ children }) => {
   );
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({
-      type: "ADD",
-      item,
-    });
+    dispatchCartAction({ type: "ADD", item });
   };
 
   const removeItemFromCartHandler = (id) => {
