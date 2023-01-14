@@ -4,7 +4,7 @@ import classes from "./Checkout.module.css";
 const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
 
-const Checkout = (props) => {
+const Checkout = ({ onCancel, onConfirm }) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -46,6 +46,13 @@ const Checkout = (props) => {
     if (!formIsValid) {
       return;
     }
+
+    onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode,
+    });
   };
 
   const nameControlClasses = `${classes.control} ${
@@ -86,7 +93,7 @@ const Checkout = (props) => {
         {!formInputsValidity.city && <p>Please entered valid City!</p>}
       </div>
       <div className={classes.actions}>
-        <button type="button" onClick={props.onCancel}>
+        <button type="button" onClick={onCancel}>
           Cancel
         </button>
         <button className={classes.submit}>Confirm</button>
